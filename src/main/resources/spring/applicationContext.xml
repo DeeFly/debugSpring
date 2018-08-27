@@ -38,7 +38,8 @@
     </bean>
 
     <bean id="postConstruct" class="com.xuele.net.constants.TestPostConstruct">
-        <constructor-arg name="value" value="构造注入"/>
+        <constructor-arg name="testString" type="java.lang.String" value="valueString"/>
+        <constructor-arg name="forInject" ref="forInject"/>
     </bean>
 
     <!--restTempplate 配置，这个没有试验过interceptors-->

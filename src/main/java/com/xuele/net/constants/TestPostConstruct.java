@@ -1,9 +1,6 @@
 package com.xuele.net.constants;
 
 import com.xuele.net.service.ForInject;
-import jdk.nashorn.internal.runtime.ScriptFunctionData;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -11,16 +8,18 @@ import javax.annotation.PreDestroy;
 /**
  * Created by GaoQingming on 2017/8/21 0021.
  */
-@Component
 public class TestPostConstruct {
     private String testString;
 
-    @Autowired
     private ForInject forInject;
 
-    public TestPostConstruct(String value) {
-        this.testString = value;
-        System.out.println("指定构造方法创建实例");
+    public TestPostConstruct(ForInject forInject, String testString) {
+        this.testString = testString;
+        this.forInject = forInject;
+    }
+
+    public void method() {
+        System.out.println(forInject.getMax());
     }
 
     @PostConstruct

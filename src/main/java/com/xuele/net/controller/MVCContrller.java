@@ -34,7 +34,7 @@ public class MVCContrller {
         logger.info("logger test :{} after value" , s);
         logger.warn("logger test :{} after value" , s);
         logger.error("logger test :{} after value" , s);
-
+        testPostConstruct.method();
         //String[] properties = MyProperties.getProperty("gaofei.test.properties").split(",");
         //List<String> p = Arrays.asList(properties);
         //for (String ps : p) {
