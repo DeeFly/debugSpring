@@ -21,7 +21,7 @@
     <mvc:annotation-driven/>
     <!--<context:component-scan base-package="com.gaofei.springtest.web"/>-->
 
-    <context:component-scan base-package="com.gaofei.web"
+    <context:component-scan base-package="com.xuele.net"
                             use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
@@ -74,42 +74,42 @@
 
     <!-- 配置VelocityConfigurer，负责在spring中设置Velocity引擎。通过属性resourceLoaderPath告诉Velocity到哪里寻找它的模板。
    通常将模板放到WEB-INF下的某个子目录下，可以保证这些模板不能被直接访问。-->
-    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath" value="/WEB-INF/velocity/templates"/>
-        <property name="configLocation" value="classpath:velocity/velocity.properties"/>
-    </bean>
+    <!--<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
+        <!--<property name="resourceLoaderPath" value="/WEB-INF/velocity/templates"/>-->
+        <!--<property name="configLocation" value="classpath:velocity/velocity.properties"/>-->
+    <!--</bean>-->
 
     <!--为velocity自定义函数-->
-    <bean id="stringUtill" class="com.gaofei.web.velocitytool.StringTool"></bean>
+    <!--<bean id="stringUtill" class="com.gaofei.web.velocitytool.StringTool"></bean>-->
 
     <!--配置试图解析器-->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
-        <property name="cache" value="false"/>
-        <property name="prefix" value=""/>               <!-- 视图文件的前缀，即存放的路径 -->
-        <property name="suffix" value=".vm"/>          <!-- 视图文件的后缀名 -->
-        <property name="layoutUrl" value="layout/defaultlayout.vm" /> <!--指定layout文件,配置layoutUrl设定系统默认的模板路径-->
-        <property name="layoutKey" value="layout"></property>  <!--设定模板文件键值，设定该值后就可以在vm文件中使用该键值设置模板路径，-->
-        <property name="screenContentKey" value="screen_content" />     <!--screenContentKey表示指定vm文件显示位置-->
-        <property name="contentType" value="text/html;charset=utf-8"/> <!--指定编码-->
-        <!--使用自定义函数-->
-        <property name="attributesMap">
-            <map>
-                <entry key="sec">
-                    <ref bean="stringUtill"/>
-                </entry>
-            </map>
-        </property>
-        <!--也可以通过下面这种方式为velocity添加自定义函数-->
-        <property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml"/>
-        <property name="exposeSpringMacroHelpers" value="true"/>       <!--是否使用spring对宏定义的支持-->
-        <property name="exposeRequestAttributes" value="true"/>          <!--是否开放request属性-->
-        <property name="exposeSessionAttributes" value="true"/>         <!--是否开放session属性-->
-        <property name="allowSessionOverride" value="true"/>
-        <property name="allowRequestOverride" value="true"/>
-        <!--<property name="requestContextAttribute" value="rc"/> &lt;!&ndash;      request属性引用名称&ndash;&gt;-->
-    </bean>
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">-->
+        <!--<property name="cache" value="false"/>-->
+        <!--<property name="prefix" value=""/>               &lt;!&ndash; 视图文件的前缀，即存放的路径 &ndash;&gt;-->
+        <!--<property name="suffix" value=".vm"/>          &lt;!&ndash; 视图文件的后缀名 &ndash;&gt;-->
+        <!--<property name="layoutUrl" value="layout/defaultlayout.vm" /> &lt;!&ndash;指定layout文件,配置layoutUrl设定系统默认的模板路径&ndash;&gt;-->
+        <!--<property name="layoutKey" value="layout"></property>  &lt;!&ndash;设定模板文件键值，设定该值后就可以在vm文件中使用该键值设置模板路径，&ndash;&gt;-->
+        <!--<property name="screenContentKey" value="screen_content" />     &lt;!&ndash;screenContentKey表示指定vm文件显示位置&ndash;&gt;-->
+        <!--<property name="contentType" value="text/html;charset=utf-8"/> &lt;!&ndash;指定编码&ndash;&gt;-->
+        <!--&lt;!&ndash;使用自定义函数&ndash;&gt;-->
+        <!--<property name="attributesMap">-->
+            <!--<map>-->
+                <!--<entry key="sec">-->
+                    <!--<ref bean="stringUtill"/>-->
+                <!--</entry>-->
+            <!--</map>-->
+        <!--</property>-->
+        <!--&lt;!&ndash;也可以通过下面这种方式为velocity添加自定义函数&ndash;&gt;-->
+        <!--<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml"/>-->
+        <!--<property name="exposeSpringMacroHelpers" value="true"/>       &lt;!&ndash;是否使用spring对宏定义的支持&ndash;&gt;-->
+        <!--<property name="exposeRequestAttributes" value="true"/>          &lt;!&ndash;是否开放request属性&ndash;&gt;-->
+        <!--<property name="exposeSessionAttributes" value="true"/>         &lt;!&ndash;是否开放session属性&ndash;&gt;-->
+        <!--<property name="allowSessionOverride" value="true"/>-->
+        <!--<property name="allowRequestOverride" value="true"/>-->
+        <!--&lt;!&ndash;<property name="requestContextAttribute" value="rc"/> &lt;!&ndash;      request属性引用名称&ndash;&gt;&ndash;&gt;-->
+    <!--</bean>-->
 
-    <!--异常处理-->
-    <bean class="com.gaofei.web.exception.DefaultExceptionHandler"/>
-    <bean class="com.gaofei.web.exception.SecondeExceptionHandler"/>
+    <!--&lt;!&ndash;异常处理&ndash;&gt;-->
+    <!--<bean class="com.gaofei.web.exception.DefaultExceptionHandler"/>-->
+    <!--<bean class="com.gaofei.web.exception.SecondeExceptionHandler"/>-->
 </beans>

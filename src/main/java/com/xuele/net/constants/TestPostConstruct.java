@@ -1,6 +1,7 @@
 package com.xuele.net.constants;
 
-import com.gaofei.web.service.ForInject;
+import com.xuele.net.service.ForInject;
+import jdk.nashorn.internal.runtime.ScriptFunctionData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +18,9 @@ public class TestPostConstruct {
     @Autowired
     private ForInject forInject;
 
-    public TestPostConstruct() {
-        this.testString = "construct";
-        System.out.println("construct");
+    public TestPostConstruct(String value) {
+        this.testString = value;
+        System.out.println("指定构造方法创建实例");
     }
 
     @PostConstruct

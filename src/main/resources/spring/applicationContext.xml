@@ -19,7 +19,7 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <!-- 开启自动扫描，自动开启注解，可以使用注解了-->
-    <context:component-scan base-package="com.gaofei.web">
+    <context:component-scan base-package="com.xuele.net">
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
         <context:exclude-filter type="annotation"
@@ -32,9 +32,13 @@
     <bean id="forInject" class="com.gaofei.springtest.service.ForInject"/>-->
 
     <!--通过配置文件方式给属性设值    冒号后面可以跟默认值，就是如果没有从配置文件中找到，就用冒号后面的值给属性注入-->
-    <bean id="urlConstant" class="com.gaofei.web.constant.UrlConstant">
+    <bean id="urlConstant" class="com.xuele.net.constants.UrlConstant">
         <property name="serviceUrl" value="ceshiurl"/>
         <property name="jdbcUrl" value="${mysql.jdbc.url:morenzhiceshi}"/>
+    </bean>
+
+    <bean id="postConstruct" class="com.xuele.net.constants.TestPostConstruct">
+        <constructor-arg name="value" value="构造注入"/>
     </bean>
 
     <!--restTempplate 配置，这个没有试验过interceptors-->

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by GaoQingming on 2017/8/15 0015.
@@ -22,6 +23,7 @@ public class MVCContrller {
     private final Logger logger = LoggerFactory.getLogger(MVCContrller.class);
 
     @RequestMapping("third")
+    @ResponseBody
     public String testContrller() {
         String s = "loggerValue";
         System.out.println("third");
