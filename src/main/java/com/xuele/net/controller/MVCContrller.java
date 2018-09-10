@@ -3,6 +3,8 @@ package com.xuele.net.controller;
 import com.xuele.net.constants.MyProperties;
 import com.xuele.net.constants.TestPostConstruct;
 import com.xuele.net.constants.UrlConstant;
+import com.xuele.net.service.ForInject;
+import com.xuele.net.service.TempService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,10 @@ public class MVCContrller {
     @Autowired
     private UrlConstant urlConstant;
     @Autowired
+    private ForInject forInject;
+    @Autowired
+    private TempService tempService;
+    @Autowired
     private TestPostConstruct testPostConstruct;
     private final Logger logger = LoggerFactory.getLogger(MVCContrller.class);
 
@@ -26,9 +32,15 @@ public class MVCContrller {
     @ResponseBody
     public String testContrller() {
         String s = "loggerValue";
-        System.out.println("third");
+        System.out.println("forInject--------------------------------------------------------");
+        System.out.println(forInject.getMax());
+        System.out.println("tempService------------------------------------------------------");
+        System.out.println(tempService.getNum());
+        System.out.println("jdbcUrl----------------------------------------------------------");
         System.out.println("jdbcUrl:" + urlConstant.getJdbcUrl());
+        System.out.println("testPostConstruct----------------------------------------------------------");
         System.out.println("testPostConstruct in controller : " + testPostConstruct.getTestString());
+        System.out.println("valueTest----------------------------------------------------------");
         System.out.println("valueTest:" + urlConstant.getValueTest());
         logger.debug("logger test :{} after value" , s);
         logger.info("logger test :{} after value" , s);

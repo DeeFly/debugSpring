@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class TempService {
     @Autowired
     private ForInject forInject11;
+
     public int getNum() {
         System.out.println("forInject getMax:" + forInject11.getMax());
         return 0;

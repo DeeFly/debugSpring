@@ -16,7 +16,7 @@
     <context:property-placeholder location="classpath:properties/db.properties,classpath:properties/value.properties" properties-ref="propertiesConfiguration" ignore-unresolvable="true"/>
     -->
     <!--写出来这个注解，会扫描代码中的切面注解。（不开启不扫描不执行）-->
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <aop:aspectj-autoproxy proxy-target-class="true"  expose-proxy="true"/>
 
     <!-- 开启自动扫描，自动开启注解，可以使用注解了-->
     <context:component-scan base-package="com.xuele.net">
@@ -35,6 +35,10 @@
     <bean id="urlConstant" class="com.xuele.net.constants.UrlConstant">
         <property name="serviceUrl" value="ceshiurl"/>
         <property name="jdbcUrl" value="${mysql.jdbc.url:morenzhiceshi}"/>
+    </bean>
+
+    <bean id="testPostConstruct" class="com.xuele.net.constants.TestPostConstruct">
+        <property name="tempService" ref="tempService"/>
     </bean>
 
     <!--<bean id="postConstruct" class="com.xuele.net.constants.TestPostConstruct">-->
@@ -60,4 +64,14 @@
             </list>
         </property>-->
     </bean>
+
+    <aop:config>
+        <aop:pointcut expression="execution(* com.xuele.net.service.ForInject.*(..))"
+                      id="servicePointcut"/>
+        <aop:aspect id="logAspect" ref="myAopTestXML">
+            <aop:around method="handleAop"  pointcut-ref="servicePointcut" />
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="myAopTestXML" class="com.xuele.net.aop.MyAopTestXML"/>
 </beans>
