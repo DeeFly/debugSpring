@@ -39,4 +39,28 @@ public class MyAopTest2 {
         return object;
     }
 
+
+    @Pointcut("execution(* com.xuele.net.service.ForInject.getMax(..))")
+    public void pointCut2(){}
+
+    /**
+     *
+     * IllegalArgumentException: ProceedingJoinPoint is only supported for around advice
+     * @param joinPoint
+     * @return
+     * @throws Throwable
+     */
+    @Around(value = "pointCut2()")
+    public Object handleAop2(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("myAOPTest222222222 around come,只针对forInject.getMax（）");
+        Object object = joinPoint.proceed(joinPoint.getArgs());
+        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
+        Method method = signature.getMethod();
+        if (object == null) return object;
+
+        if (method != null && method.getAnnotation(MyAnnotationTest.class) != null) {
+        }
+        return object;
+    }
+
 }

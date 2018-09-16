@@ -32,9 +32,9 @@ public class MVCContrller {
     private TestPostConstruct testPostConstruct;
     private final Logger logger = LoggerFactory.getLogger(MVCContrller.class);
 
-    @RequestMapping("third")
+    @RequestMapping("testAop")
     @ResponseBody
-    public String testContrller() {
+    public String testAop() {
         String s = "loggerValue";
         System.out.println("forInject--------------------------------------------------------");
         System.out.println(forInject.getMax());
@@ -69,7 +69,7 @@ public class MVCContrller {
      */
     @RequestMapping("testParam/{pathV}/suffix")
     @ResponseBody
-    public String testParam(@PathVariable(value = "pathV") String pathV, @RequestParam("param") String param, HttpServletRequest request) {
+    public String testController(@PathVariable(value = "pathV") String pathV, @RequestParam("param") String param, HttpServletRequest request) {
         System.out.println("pathV:" + pathV);
         System.out.println("param:" + param);
         return "index";
