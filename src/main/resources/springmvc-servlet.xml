@@ -16,12 +16,16 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
 
+    <!--注册这三个beanDefinition，
+    DefaultServletHttpRequestHandler:默认的handler
+    SimpleUrlHandlerMapping:根据url映射对应的handler
+    SimpleControllerHandlerAdapter:handler适配器-->
     <mvc:default-servlet-handler/>
-    <!-- 开启注解,如果下面开启了自动扫描，那么就自动开启了注解 -->
+    <!-- 对应的parser:AnnotationDrivenBeanDefinitionParser 注册了挺多东西-->
     <mvc:annotation-driven/>
     <!--<context:component-scan base-package="com.gaofei.springtest.web"/>-->
 
-    <context:component-scan base-package="com.xuele.net"
+    <context:component-scan base-package="com.xuele.net.controller"
                             use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>

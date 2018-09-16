@@ -9,8 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by GaoQingming on 2017/8/15 0015.
@@ -30,7 +34,7 @@ public class MVCContrller {
 
     @RequestMapping("third")
     @ResponseBody
-    public String testContrller() {
+    public String testContrller(@PathVariable("pathV") String pathV) {
         String s = "loggerValue";
         System.out.println("forInject--------------------------------------------------------");
         System.out.println(forInject.getMax());
@@ -53,6 +57,14 @@ public class MVCContrller {
         //    System.out.println(ps);
         //}
         System.out.println("properties Test : " + MyProperties.getProperty("gaofei.test.properties"));
+        return "index";
+    }
+
+    @RequestMapping("testParam/{pathV}")
+    @ResponseBody
+    public String testParam(@PathVariable("pathV") String pathV, @RequestParam("param") String param, HttpServletRequest request) {
+        System.out.println("pathV:" + pathV);
+        System.out.println("param:" + param);
         return "index";
     }
 
