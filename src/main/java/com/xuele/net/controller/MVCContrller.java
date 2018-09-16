@@ -34,7 +34,7 @@ public class MVCContrller {
 
     @RequestMapping("third")
     @ResponseBody
-    public String testContrller(@PathVariable("pathV") String pathV) {
+    public String testContrller() {
         String s = "loggerValue";
         System.out.println("forInject--------------------------------------------------------");
         System.out.println(forInject.getMax());
@@ -60,9 +60,16 @@ public class MVCContrller {
         return "index";
     }
 
-    @RequestMapping("testParam/{pathV}")
+    /**
+     * http://localhost:8080/web/controller/testParam/1/suffix?param=123
+     * @param pathV
+     * @param param
+     * @param request
+     * @return
+     */
+    @RequestMapping("testParam/{pathV}/suffix")
     @ResponseBody
-    public String testParam(@PathVariable("pathV") String pathV, @RequestParam("param") String param, HttpServletRequest request) {
+    public String testParam(@PathVariable(value = "pathV") String pathV, @RequestParam("param") String param, HttpServletRequest request) {
         System.out.println("pathV:" + pathV);
         System.out.println("param:" + param);
         return "index";
