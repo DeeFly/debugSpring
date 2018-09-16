@@ -26,6 +26,11 @@ public class ForInject extends MyProperties {
         return 0;
     }
 
+    //测试这个类中有方法被代理，但是有些方法不需要代理，那么调用这些方法是时会走aop吗
+    public int notAop() {
+        return 0;
+    }
+
 
     public void callTempService() {
         tempService.getForInject().getMax();
