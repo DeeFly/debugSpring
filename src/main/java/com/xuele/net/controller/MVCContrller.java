@@ -38,6 +38,8 @@ public class MVCContrller {
         String s = "loggerValue";
         System.out.println("forInject--------------------------------------------------------");
         System.out.println(forInject.getMax());
+        System.out.println("forInject not aop--------------------------------------------------------");
+        System.out.println(forInject.notAop());
         System.out.println("tempService------------------------------------------------------");
         System.out.println(tempService.getNum());
         System.out.println("jdbcUrl----------------------------------------------------------");

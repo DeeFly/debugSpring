@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 @Aspect
 public class MyAopTest {
 
-    @Pointcut("execution(* com.xuele.net.service..*(..))")
+    @Pointcut("execution(* com.xuele.net.service..get*(..))")
     public void pointCut(){}
 
     /**
