@@ -36,11 +36,13 @@ public class MVCContrller {
     @ResponseBody
     public String testAop() {
         String s = "loggerValue";
-        System.out.println("forInject--------------------------------------------------------");
+        System.out.println("forInject get min--------------------------------------------------------");
+        System.out.println(forInject.getMin(1));
+        System.out.println("forInject get max--------------------------------------------------------");
         System.out.println(forInject.getMax());
         System.out.println("forInject not aop--------------------------------------------------------");
         System.out.println(forInject.notAop());
-        System.out.println("tempService------------------------------------------------------");
+        System.out.println("tempService get num------------------------------------------------------");
         System.out.println(tempService.getNum());
         System.out.println("jdbcUrl----------------------------------------------------------");
         System.out.println("jdbcUrl:" + urlConstant.getJdbcUrl());

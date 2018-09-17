@@ -18,11 +18,12 @@ public class ForInject extends MyProperties {
     @MyAnnotationTest
     public int getMax() {
         //测试在切面中调用自己类中的一个方法，该方法会不会走切面 如果不用这种方式，那确实不会走增强器。
-        System.out.println("测试在切面中调用自己类中的一个方法，该方法会不会走切面:" + ((ForInject) AopContext.currentProxy()).getMin());
+        System.out.println("测试在切面中调用自己类中的一个方法，该方法会不会走切面:" + ((ForInject) AopContext.currentProxy()).getMin(1));
         return 11;
     }
 
-    public int getMin() {
+    public int getMin(int n) {
+        System.out.println("get min param n : " + n);
         return 0;
     }
 
