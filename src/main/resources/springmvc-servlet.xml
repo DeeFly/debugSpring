@@ -113,7 +113,17 @@
         <!--&lt;!&ndash;<property name="requestContextAttribute" value="rc"/> &lt;!&ndash;      request属性引用名称&ndash;&gt;&ndash;&gt;-->
     <!--</bean>-->
 
-    <!--&lt;!&ndash;异常处理&ndash;&gt;-->
-    <!--<bean class="com.gaofei.web.exception.DefaultExceptionHandler"/>-->
+    <bean class="com.xuele.net.exception.DefaultExceptionHandler"/>
     <!--<bean class="com.gaofei.web.exception.SecondeExceptionHandler"/>-->
+
+    <mvc:interceptors>
+        <!--对所有的请求记性拦截-->
+        <!--<bean class="com.xuele.net.interceptor.InterceptorTest"/>-->
+        <!--对特定的请求进行拦截-->
+        <mvc:interceptor>
+            <!--进行拦截的路径 /*的时候只会匹配一级目录，/** 的时候匹配多级目录-->
+            <mvc:mapping path="/controller/testParam/**"/>
+            <bean class="com.xuele.net.interceptor.InterceptorTest"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

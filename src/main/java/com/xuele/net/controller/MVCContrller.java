@@ -36,20 +36,20 @@ public class MVCContrller {
     @ResponseBody
     public String testAop() {
         String s = "loggerValue";
-        System.out.println("forInject get min--------------------------------------------------------");
-        System.out.println(forInject.getMin(1));
-        System.out.println("forInject get max--------------------------------------------------------");
-        System.out.println(forInject.getMax());
-        System.out.println("forInject not aop--------------------------------------------------------");
-        System.out.println(forInject.notAop());
-        System.out.println("tempService get num------------------------------------------------------");
-        System.out.println(tempService.getNum());
-        System.out.println("jdbcUrl----------------------------------------------------------");
-        System.out.println("jdbcUrl:" + urlConstant.getJdbcUrl());
-        System.out.println("testPostConstruct----------------------------------------------------------");
-        System.out.println("testPostConstruct in controller : " + testPostConstruct.getTestString());
-        System.out.println("valueTest----------------------------------------------------------");
-        System.out.println("valueTest:" + urlConstant.getValueTest());
+        logger.info("forInject get min--------------------------------------------------------");
+        logger.info("forInject get min:{}", forInject.getMin(1));
+        logger.info("forInject get max--------------------------------------------------------");
+        logger.info("forInject get max:{}", forInject.getMax());
+        logger.info("forInject not aop--------------------------------------------------------");
+        logger.info("forInject not aop:{}", forInject.notAop());
+        logger.info("tempService get num------------------------------------------------------");
+        logger.info("tempService get Num:{}", tempService.getNum());
+        logger.info("jdbcUrl----------------------------------------------------------");
+        logger.info("jdbcUrl:" + urlConstant.getJdbcUrl());
+        logger.info("testPostConstruct----------------------------------------------------------");
+        logger.info("testPostConstruct in controller : " + testPostConstruct.getTestString());
+        logger.info("valueTest----------------------------------------------------------");
+        logger.info("valueTest:" + urlConstant.getValueTest());
         logger.debug("logger test :{} after value" , s);
         logger.info("logger test :{} after value" , s);
         logger.warn("logger test :{} after value" , s);
@@ -58,9 +58,9 @@ public class MVCContrller {
         //String[] properties = MyProperties.getProperty("gaofei.test.properties").split(",");
         //List<String> p = Arrays.asList(properties);
         //for (String ps : p) {
-        //    System.out.println(ps);
+        //    logger.info(ps);
         //}
-        System.out.println("properties Test : " + MyProperties.getProperty("gaofei.test.properties"));
+        logger.info("properties Test : " + MyProperties.getProperty("gaofei.test.properties"));
         return "index";
     }
 
@@ -74,8 +74,8 @@ public class MVCContrller {
     @RequestMapping("testParam/{pathV}/suffix")
     @ResponseBody
     public String testController(@PathVariable(value = "pathV") String pathV, @RequestParam("param") String param, HttpServletRequest request) {
-        System.out.println("pathV:" + pathV);
-        System.out.println("param:" + param);
+        logger.info("pathV:" + pathV);
+        logger.info("param:" + param);
         return "index";
     }
 

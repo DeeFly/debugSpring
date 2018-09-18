@@ -4,6 +4,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -14,6 +16,7 @@ import java.lang.reflect.Method;
 @Component
 @Aspect
 public class MyAopTest {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Pointcut("execution(* com.xuele.net.service..get*(..))")
     public void pointCut(){}
@@ -27,7 +30,7 @@ public class MyAopTest {
      */
     @Around(value = "pointCut()")
     public Object handleAop(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("myAOPTest around come");
+        logger.info("myAOPTest around come");
         Object object = joinPoint.proceed(joinPoint.getArgs());
         MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
@@ -36,24 +39,25 @@ public class MyAopTest {
         if (method != null && method.getAnnotation(MyAnnotationTest.class) != null) {
             object = (Integer) object + new Integer(2);
         }
+        logger.info("myAOPTest around end");
         return object;
     }
 
     @Before(value = "pointCut()")
     public Object beforeInvoke(JoinPoint point) throws Throwable {
-        System.out.println("myAOPTest come before invoke");
+        logger.info("myAOPTest come before invoke");
         return null;
     }
 
     @After(value = "pointCut()")
     public Object afterInvoke(JoinPoint point) throws Throwable {
-        System.out.println("myAOPTest come after invoke");
+        logger.info("myAOPTest come after invoke");
         return null;
     }
 
     @AfterReturning(value = "pointCut()",returning="returnValue")
     public Object afterReturning(JoinPoint point, Object returnValue) throws Throwable {
-        System.out.println("myAOPTest come afterReturning invoke");
+        logger.info("myAOPTest come afterReturning invoke");
         return returnValue;
     }
 }

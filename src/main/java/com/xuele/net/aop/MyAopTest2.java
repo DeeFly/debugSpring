@@ -5,6 +5,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -15,6 +17,7 @@ import java.lang.reflect.Method;
 @Component
 @Aspect
 public class MyAopTest2 {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Pointcut("execution(* com.xuele.net.service.TempService.*(..))")
     public void pointCut(){}
@@ -28,7 +31,7 @@ public class MyAopTest2 {
      */
     @Around(value = "pointCut()")
     public Object handleAop(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("myAOPTest222222222 around come");
+        logger.info("myAOPTest222222222 around come");
         Object object = joinPoint.proceed(joinPoint.getArgs());
         MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
@@ -36,6 +39,7 @@ public class MyAopTest2 {
 
         if (method != null && method.getAnnotation(MyAnnotationTest.class) != null) {
         }
+        logger.info("myAOPTest222222222 around end");
         return object;
     }
 
@@ -52,7 +56,7 @@ public class MyAopTest2 {
      */
     @Around(value = "pointCut2()")
     public Object handleAop2(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("myAOPTest222222222 around come,只针对forInject.getMax（）");
+        logger.info("myAOPTest222222222 around come,只针对forInject.getMax（）");
         Object object = joinPoint.proceed(joinPoint.getArgs());
         MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
