@@ -27,6 +27,6 @@ public class InterceptorTest  implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        logger.info("afterCompletion come ");
+        logger.info("afterCompletion come  ================================================================");
     }
 }
